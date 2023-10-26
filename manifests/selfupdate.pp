@@ -59,7 +59,6 @@ define composer::selfupdate(
   $base_command = "${composer::php_bin} ${composer_path} selfupdate"
 
   if $version != undef {
-    validate_string($version)
     $version_arg = " ${version}"
   } else {
     $version_arg = ''
