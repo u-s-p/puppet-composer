@@ -57,33 +57,25 @@
 # Thomas Ploch <profiploch@gmail.com>
 #
 class composer(
-  $target_dir      = $composer::params::target_dir,
-  $composer_file   = $composer::params::composer_file,
-  $download_method = $composer::params::download_method,
-  $logoutput       = $composer::params::logoutput,
-  $tmp_path        = $composer::params::tmp_path,
-  $php_package     = $composer::params::php_package,
-  $curl_package    = $composer::params::curl_package,
-  $wget_package    = $composer::params::wget_package,
-  $composer_home   = $composer::params::composer_home,
-  $php_bin         = $composer::params::php_bin,
-  $suhosin_enabled = $composer::params::suhosin_enabled,
-  $auto_update     = $composer::params::auto_update,
-  $projects        = hiera_hash('composer::execs', {}),
-  $github_token    = undef,
-  $user            = undef,
+  Stdlib::AbsolutePath $target_dir    = $composer::params::target_dir,
+  String $composer_file               = $composer::params::composer_file,
+  String $download_method             = $composer::params::download_method,
+  stdlib::AbsolutePath $logoutput     = $composer::params::logoutput,
+  Stdlib::AbsolutePath $tmp_path      = $composer::params::tmp_path,
+  String $php_package                 = $composer::params::php_package,
+  String $curl_package                = $composer::params::curl_package,
+  String $wget_package                = $composer::params::wget_package,
+  Stdlib::AbsolutePath $composer_home = $composer::params::composer_home,
+  String $php_bin                     = $composer::params::php_bin,
+  Boolean $suhosin_enabled            = $composer::params::suhosin_enabled,
+  Boolean $auto_update                = $composer::params::auto_update,
+  Hash $projects                      = hiera_hash('composer::execs', {}),
+  String $github_token                = undef,
+  String $user                        = undef,
 ) inherits ::composer::params {
 
   require ::stdlib
   require ::git
-
-  # Validate input vars
-  validate_string(
-    $target_dir, $composer_file, $download_method,
-    $tmp_path, $php_package, $curl_package, $wget_package,
-    $composer_home, $php_bin
-  )
-  validate_bool($suhosin_enabled, $auto_update)
 
   # Set the exec path for composer target dir
   Exec { path => "/bin:/usr/bin/:/sbin:/usr/sbin:${target_dir}" }

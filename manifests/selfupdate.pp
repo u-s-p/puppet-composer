@@ -32,18 +32,16 @@
 # Copyright 2013-2014 Thomas Ploch
 #
 define composer::selfupdate(
-  $version       = undef,
-  $rollback      = false,
-  $clean_backups = false,
-  $user          = undef,
-  $logoutput     = false,
-  $timeout       = 300,
-  $tries         = 3,
-  $schedule      = undef,
+  $version               = undef,
+  Boolean $rollback      = false,
+  Boolean $clean_backups = false,
+  String $user           = undef,
+  Boolean $logoutput     = false,
+  Integer $timeout       = 300,
+  Integer $tries         = 3,
+  String $schedule       = undef,
 ) {
   require ::composer
-
-  validate_bool($rollback, $clean_backups)
 
   if $version == undef and $rollback == true {
     fail('You cannot use rollback without specifying a version')

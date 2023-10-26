@@ -11,41 +11,33 @@
 # Copyright 2013 Thomas Ploch
 #
 define composer::exec (
-  $cmd,
-  $cwd,
-  $packages                 = [],
-  $prefer_source            = false,
-  $prefer_dist              = false,
-  $dry_run                  = false,
-  $custom_installers        = false,
-  $scripts                  = false,
-  $optimize                 = false,
-  $ignore_platform_reqs     = false,
-  $interaction              = false,
-  $dev                      = true,
-  $no_update                = false,
-  $no_progress              = false,
-  $update_with_dependencies = false,
-  $logoutput                = false,
-  $verbose                  = false,
-  $refreshonly              = false,
-  $lock                     = false,
-  $timeout                  = undef,
-  $user                     = $composer::user,
-  $global                   = false,
-  $working_dir              = undef,
-  $onlyif                   = undef,
-  $unless                   = undef,
+  String $cmd,
+  Stdlib::AbsolutePath $cwd,
+  Array $packages                   = [],
+  Boolean $prefer_source            = false,
+  Boolean $prefer_dist              = false,
+  Boolean $dry_run                  = false,
+  Boolean $custom_installers        = false,
+  Boolean $scripts                  = false,
+  Boolean $optimize                 = false,
+  Boolean $ignore_platform_reqs     = false,
+  Boolean $interaction              = false,
+  Boolean $dev                      = true,
+  Boolean $no_update                = false,
+  Boolean $no_progress              = false,
+  Boolean $update_with_dependencies = false,
+  Boolean $logoutput                = false,
+  Boolean $verbose                  = false,
+  Boolean $refreshonly              = false,
+  Boolean $lock                     = false,
+  Integer $timeout                  = undef,
+  String $user                      = $composer::user,
+  Boolean $global                   = false,
+  Stdlib::AbsolutePath $working_dir = undef,
+  String $onlyif                    = undef,
+  String $unless                    = undef,
 ) {
   require ::composer
-
-  validate_string($cmd, $cwd)
-  validate_bool(
-    $lock, $prefer_source, $prefer_dist, $dry_run,
-    $custom_installers, $scripts, $optimize, $ignore_platform_reqs,
-    $interaction, $dev, $verbose, $refreshonly
-  )
-  validate_array($packages)
 
   $m_timeout = $timeout?{
     undef => 300,
