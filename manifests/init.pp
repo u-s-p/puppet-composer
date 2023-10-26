@@ -60,7 +60,7 @@ class composer(
   Stdlib::AbsolutePath $target_dir    = $composer::params::target_dir,
   String $composer_file               = $composer::params::composer_file,
   String $download_method             = $composer::params::download_method,
-  Stdlib::AbsolutePath $logoutput     = $composer::params::logoutput,
+  Boolean $logoutput                  = $composer::params::logoutput,
   Stdlib::AbsolutePath $tmp_path      = $composer::params::tmp_path,
   String $php_package                 = $composer::params::php_package,
   String $curl_package                = $composer::params::curl_package,
