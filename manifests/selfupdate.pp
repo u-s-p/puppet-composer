@@ -32,7 +32,7 @@
 # Copyright 2013-2014 Thomas Ploch
 #
 define composer::selfupdate(
-  Optional[$version]         = undef,
+  Optional[String] $version  = undef,
   Boolean $rollback          = false,
   Boolean $clean_backups     = false,
   Optional[String] $user     = undef,
