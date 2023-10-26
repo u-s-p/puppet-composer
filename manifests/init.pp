@@ -70,8 +70,8 @@ class composer(
   Boolean $suhosin_enabled            = $composer::params::suhosin_enabled,
   Boolean $auto_update                = $composer::params::auto_update,
   Hash $projects                      = hiera_hash('composer::execs', {}),
-  String $github_token                = undef,
-  String $user                        = undef,
+  Optional[String] $github_token      = undef,
+  Optional[String] $user              = undef,
 ) inherits ::composer::params {
 
   require ::stdlib
