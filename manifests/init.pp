@@ -69,7 +69,7 @@ class composer(
   String $php_bin                     = $composer::params::php_bin,
   Boolean $suhosin_enabled            = $composer::params::suhosin_enabled,
   Boolean $auto_update                = $composer::params::auto_update,
-  Hash $projects                      = hiera_hash('composer::execs', {}),
+  Hash $projects                      = lookup('composer::execs', Hash, undef, {}),
   Optional[String] $github_token      = undef,
   Optional[String] $user              = undef,
 ) inherits ::composer::params {
