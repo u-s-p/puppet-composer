@@ -42,18 +42,18 @@
 # Copyright 2013 Thomas Ploch
 #
 define composer::project(
-  $project_name,
-  $target_dir,
-  $version        = undef,
-  $dev            = true,
-  $prefer_source  = false,
-  $stability      = 'dev',
-  $repository_url = undef,
-  $keep_vcs       = false,
-  $tries          = 3,
-  $timeout        = 1200,
-  $user           = $composer::user,
-  $working_dir    = undef,
+  String $project_name,
+  Stdlib::AbsolutePath $target_dir,
+  Boolean $dev                     = true,
+  Boolean $prefer_source           = false,
+  String $stability                = 'dev',
+  Boolean $keep_vcs                = false,
+  Integer $tries                   = 3,
+  Integer $timeout                 = 1200,
+  Optional[String] $user           = $composer::user,
+  Optional[String] $version        = undef,
+  Optional[String] $repository_url = undef,
+  Optional[String] $working_dir    = undef,
 ) {
   require ::composer
 

@@ -32,13 +32,13 @@
 # Copyright 2013-2014 Thomas Ploch
 #
 define composer::selfupdate(
-  Optional[String] $version  = undef,
   Boolean $rollback          = false,
   Boolean $clean_backups     = false,
-  Optional[String] $user     = undef,
   Boolean $logoutput         = false,
   Integer $timeout           = 300,
   Integer $tries             = 3,
+  Optional[String] $version  = undef,
+  Optional[String] $user     = undef,
   Optional[String] $schedule = undef,
 ) {
   require ::composer
